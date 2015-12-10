@@ -152,9 +152,9 @@ public class SuperArray {
 		batman.add(new Rational(7,11)); //0
 		batman.add(new Hexadecimal("20")); //1
 		batman.add(new Binary("100100")); //2
-		batman.add(new Binary("10101")); //3
-		batman.add(new Hexadecimal("17")); //4
-		batman.add(new Rational(80,8)); //5
+		batman.add(new Binary(4)); //3
+		batman.add(new Hexadecimal(4)); //4
+		batman.add(new Rational(32,8)); //5
 		batman.add(new Rational(189,3)); //6
 		batman.add(new Hexadecimal("6C")); //7
 		batman.add(new Binary("111111")); //8
@@ -163,16 +163,19 @@ public class SuperArray {
 		System.out.println(batman);
 		System.out.println();
 		
-		
 		//Tests batman's functionality
+		System.out.println("Testing isSorted, size, & linSearch functions...");
 		System.out.println( batman.isSorted() ); //should be false
 		System.out.println( batman.size() ); //should be 9
 		System.out.println( batman.linSearch (new Binary("100100")) ); //should be 2
+		System.out.println();
 		
 		//Tests for compareTo
+		System.out.println("Testing compareTo...");
 		System.out.println( batman.get(1).compareTo(batman.get(2))); //should be pos
-		System.out.println( batman.get(2).compareTo(batman.get(4))); //should be neg
-		System.out.println( batman.get(3).compareTo(batman.get(4))); //should be pos
+		System.out.println( batman.get(2).compareTo(batman.get(4))); //should be pos
+		System.out.println( batman.get(3).compareTo(batman.get(4))); //should be 0
+		System.out.println( batman.get(4).compareTo(batman.get(5))); //should be 0
 		System.out.println( batman.get(5).compareTo(batman.get(8))); //should be neg
 		System.out.println( batman.get(7).compareTo(batman.get(8))); //should be neg
 		
