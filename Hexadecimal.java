@@ -159,22 +159,39 @@ public class Binary {
 	}
 	
 	
-	/*=============================================
-		int compareTo(Object) -- tells which of two Binary objects is greater
-		pre:  other is instance of class Binary
-		post: Returns 0 if this Object is equal to the input Object,
-		negative integer if this<input, positive integer otherwise
-	=============================================*/
-	public int compareTo( Object other ) {
-		if (this.equals(other)) {
-			return 0;
-		}
-		else if (this._decNum < ((Binary)other)._decNum) {
-			return -1;
+	public int compareTo( Object o ) {
+		if (o instanceof Comparable) {
+			if (o instanceof Binary) {
+				if( this.getDec() == ((Binary)o).getDec() )
+				return 0;
+				else if( this.getDec() > ((Binary)o).getDec() )
+				return 1;
+				else
+				return -1;
 			}
-		else { 
-			return 1;
+			else if (o instanceof Hexadecimal) {
+				if( this.getDec() == ((Hexadecimal)o).getDec() )
+				return 0;
+				else if( this.getDec() > ((Hexadecimal)o).getDec() )
+				return 1;
+				else
+				return -1;
+			}
+			else if (o instanceof Rational) {
+				if( this.getDec() == ((Rational)o).floatValue() )
+				return 0;
+				else if( this.getDec() > ((Rational)o).floatValue() )
+				return 1;
+				else
+				return -1;
+			}
+			else throw new NullPointerException ("Error! Nothing to compare value to!");
 		}
+		else throw new ClassCastException ("Error! Not an instance of Comparable!");
+	}
+	
+	public int getDec() {
+		return _decNum;
 	}
 	
 	
