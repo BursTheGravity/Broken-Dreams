@@ -89,14 +89,35 @@ public class Rational implements Comparable {
 		setD( d / gcd );
 	}
     
-	//So I believe implementing "implements" for Comparable lays a blueprint of functions that require defining within classes that implement it
-    public int compareTo( Object o ) {
-		if( this.floatValue() == ((Rational)o).floatValue() )
-		return 0;
-		else if( this.floatValue() > ((Rational)o).floatValue() )
-		return 1;
-		else
-		return -1;
+	public int compareTo( Object o ) {
+		if (o instanceof Comparable) {
+			if (o instanceof Binary) {
+				if( this.floatValue() == ((Binary)o).getDec() )
+				return 0;
+				else if( this.floatValue() > ((Binary)o).getDec() )
+				return 1;
+				else
+				return -1;
+			}
+			else if (o instanceof Hexadecimal) {
+				if( this.floatValue() == ((Hexadecimal)o).getDec() )
+				return 0;
+				else if( this.floatValue() > ((Hexadecimal)o).getDec() )
+				return 1;
+				else
+				return -1;
+			}
+			else if (o instanceof Rational) {
+				if( this.floatValue() == ((Rational)o).floatValue() )
+				return 0;
+				else if( this.floatValue() > ((Rational)o).floatValue() )
+				return 1;
+				else
+				return -1;
+			}
+			else throw new NullPointerException ("Error! Nothing to compare value to!");
+		}
+		else throw new ClassCastException ("Error! Not an instance of Comparable!");
 	}
 	
 	public boolean equals( Object o ) {
